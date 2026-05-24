@@ -456,7 +456,7 @@ const Landing = () => {
               <span className="font-extrabold tracking-wide">BDA CRM</span>
             </div>
             <p className="text-xs font-semibold text-slate-500">Built for Isaii AI Technical Assessment 2026 by Hardik Mathur</p>
-            <p className="text-[11px] text-slate-500 font-medium">&copy; 2026 BDA CRM. All rights reserved.</p>
+            <p className="text-[11px] text-slate-500 font-medium">&copy; 2026 BDA CRM. All rights reserved</p>
           </div>
 
           <div className="md:text-right space-y-3">
