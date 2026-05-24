@@ -1,5 +1,6 @@
 const Lead = require('../models/Lead');
 const Client = require('../models/Client');
+const FollowUp = require('../models/FollowUp');
 
 // @desc    Get summary statistics for dashboard charts
 // @route   GET /api/reports/summary
@@ -23,6 +24,13 @@ const getSummary = async (req, res) => {
     const convertedFilter = { ...filter, isConverted: true };
     const totalConversions = await Lead.countDocuments(convertedFilter);
 
+    // Count overdue follow-ups (Pending and scheduled date is in the past)
+    const overdueFollowUps = await FollowUp.countDocuments({
+      ...filter,
+      status: 'Pending',
+      scheduledAt: { $lt: new Date() }
+    });
+
     const statusData = await Lead.aggregate([
       { $match: filter },
       { $group: { _id: '$status', count: { $sum: 1 } } }
@@ -38,6 +46,8 @@ const getSummary = async (req, res) => {
       totalClients,
       totalRevenue,
       totalConversions,
+      overdueFollowUps,
+      monthlyTarget: req.user.monthlyTarget || 0,
       statusDistribution: statusData,
       scoreDistribution: scoreData
     });

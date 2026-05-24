@@ -22,13 +22,9 @@ const Sidebar = () => {
     { to: '/leads', label: 'Leads', icon: Target },
     { to: '/clients', label: 'Clients', icon: ShieldCheck },
     { to: '/followups', label: 'Follow-ups', icon: CalendarRange },
+    { to: '/products', label: 'Products', icon: PackageSearch },
     { to: '/reports', label: 'Reports', icon: TrendingUp }
   ];
-
-  // Admin & Manager see Products catalogue
-  if (user.role === 'admin' || user.role === 'manager') {
-    links.push({ to: '/products', label: 'Products', icon: PackageSearch });
-  }
 
   // Admin only manages Team
   if (user.role === 'admin') {

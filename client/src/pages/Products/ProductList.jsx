@@ -68,7 +68,7 @@ const ProductList = () => {
     }
   };
 
-  const isAdminOrManager = user?.role === 'admin' || user?.role === 'manager';
+  const isAdmin = user?.role === 'admin';
 
   return (
     <div className="flex min-h-screen bg-gray-50">
@@ -81,7 +81,7 @@ const ProductList = () => {
           <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
             Review catalogue items, pricing specs, and stock SKUs
           </p>
-          {isAdminOrManager && (
+          {isAdmin && (
             <button
               onClick={() => setShowAddForm(true)}
               className="flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold shadow-md shadow-indigo-600/10 transition-all"

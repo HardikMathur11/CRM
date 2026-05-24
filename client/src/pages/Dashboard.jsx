@@ -9,7 +9,8 @@ import {
   Briefcase, 
   DollarSign, 
   Award, 
-  Loader2 
+  Loader2,
+  Clock
 } from 'lucide-react';
 import { 
   ResponsiveContainer, 
@@ -82,13 +83,19 @@ const Dashboard = () => {
         
         {/* Main Content Area */}
         <main className="flex-1 overflow-y-auto p-8 space-y-8">
-          {/* 4 Stat Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* 5 Stat Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
             <StatCard 
               title="Total Leads" 
               value={stats?.totalLeads || 0} 
               icon={Target} 
               color="blue" 
+            />
+            <StatCard 
+              title="Converted Deals" 
+              value={stats?.totalConversions || 0} 
+              icon={Award} 
+              color="yellow" 
             />
             <StatCard 
               title="Active Clients" 
@@ -103,11 +110,61 @@ const Dashboard = () => {
               color="indigo" 
             />
             <StatCard 
-              title="Converted Deals" 
-              value={stats?.totalConversions || 0} 
-              icon={Award} 
-              color="yellow" 
+              title="Overdue Followups" 
+              value={stats?.overdueFollowUps || 0} 
+              icon={Clock} 
+              color="red" 
             />
+          </div>
+
+          {/* Monthly Target vs Achieved Progress Bar */}
+          <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div>
+                <h3 className="text-sm font-bold text-gray-700 tracking-wide uppercase">
+                  Monthly Sales Target Progress
+                </h3>
+                <p className="text-xs text-gray-400 font-medium">
+                  Track your monthly revenue achievements against your set target
+                </p>
+              </div>
+              <div className="sm:text-right">
+                <span className="text-xs font-bold text-gray-400 uppercase tracking-wider block">Target / Achieved</span>
+                <span className="text-sm font-bold text-indigo-600">
+                  {formatCurrency(stats?.totalRevenue || 0)}
+                </span>
+                <span className="text-xs text-gray-400 font-semibold mx-1">/</span>
+                <span className="text-xs text-gray-500 font-semibold">
+                  {formatCurrency(stats?.monthlyTarget || 0)}
+                </span>
+              </div>
+            </div>
+
+            {/* Progress bar */}
+            <div>
+              <div className="w-full bg-gray-100 rounded-full h-3.5 overflow-hidden">
+                <div 
+                  className="bg-indigo-600 h-full rounded-full transition-all duration-500 ease-out"
+                  style={{ 
+                    width: `${Math.min(
+                      100, 
+                      stats?.monthlyTarget > 0 
+                        ? Math.round((stats.totalRevenue / stats.monthlyTarget) * 100) 
+                        : 0
+                    )}%` 
+                  }}
+                />
+              </div>
+              <div className="flex justify-between items-center text-xs font-bold text-gray-400 mt-2 uppercase tracking-wider">
+                <span>0%</span>
+                <span className="text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded text-[10px]">
+                  {stats?.monthlyTarget > 0 
+                    ? `${Math.round((stats.totalRevenue / stats.monthlyTarget) * 100)}% Completed`
+                    : 'No Target Set'}
+                </span>
+                <span>100%</span>
+              </div>
+            </div>
           </div>
 
           {/* Charts Grid */}

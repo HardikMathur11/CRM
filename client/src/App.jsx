@@ -85,11 +85,11 @@ function App() {
             }
           />
 
-          {/* Admin & Manager Only: Products */}
+          {/* Products Catalogue (All Roles) */}
           <Route
             path="/products"
             element={
-              <ProtectedRoute allowedRoles={['admin', 'manager']}>
+              <ProtectedRoute allowedRoles={['admin', 'manager', 'bda']}>
                 <ProductList />
               </ProtectedRoute>
             }
