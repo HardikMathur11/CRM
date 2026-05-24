@@ -7,7 +7,7 @@ import {
   Bell, Package, Zap, Copy, Check, ArrowRight, ChevronRight
 } from 'lucide-react';
 
-// Jira/Atlassian brand color constants for inline styling to guarantee rendering
+
 const COLORS = {
   blue: '#0052CC',
   blueDark: '#0747A6',
@@ -135,7 +135,7 @@ const Landing = () => {
 
         <div className="max-w-5xl mx-auto text-center space-y-8 relative">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-blue-100 text-xs font-semibold">
-            <span>🏭</span> Designed Exclusively for Manufacturing Sales
+            <span></span> Designed Exclusively for Manufacturing Sales
           </div>
 
           <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-tight max-w-4xl mx-auto">
@@ -455,7 +455,7 @@ const Landing = () => {
               <Building2 size={20} className="text-blue-400" />
               <span className="font-extrabold tracking-wide">BDA CRM</span>
             </div>
-            <p className="text-xs font-semibold text-slate-500">Built for Isaii AI Technical Assessment 2025</p>
+            <p className="text-xs font-semibold text-slate-500">Built for Isaii AI Technical Assessment 2026 by Hardik Mathur</p>
             <p className="text-[11px] text-slate-500 font-medium">&copy; 2026 BDA CRM. All rights reserved.</p>
           </div>
 
