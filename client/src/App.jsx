@@ -4,7 +4,8 @@ import { AuthProvider } from './context/AuthContext';
 import { Toaster } from 'react-hot-toast';
 import ProtectedRoute from './components/ProtectedRoute';
 
-// Pages imports
+// import pages
+import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import LeadList from './pages/Leads/LeadList';
@@ -20,14 +21,15 @@ function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        {/* Global Notifications Alert Handler */}
+        {/* toast notifications */}
         <Toaster position="top-right" toastOptions={{ duration: 3000 }} />
 
         <Routes>
-          {/* Public Auth Endpoint */}
+          {/* public stuff */}
+          <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
 
-          {/* Secure Workspace Portals */}
+          {/* auth protected routes */}
           <Route
             path="/dashboard"
             element={
@@ -85,7 +87,7 @@ function App() {
             }
           />
 
-          {/* Products Catalogue (All Roles) */}
+          {/* anyone can see products catalog */}
           <Route
             path="/products"
             element={
@@ -95,7 +97,7 @@ function App() {
             }
           />
 
-          {/* Admin Only: Team Management */}
+          {/* admin only team panel */}
           <Route
             path="/team"
             element={
@@ -105,7 +107,7 @@ function App() {
             }
           />
 
-          {/* Root Redirect handler */}
+          {/* fallback redirect */}
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>
       </BrowserRouter>

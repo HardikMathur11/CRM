@@ -39,15 +39,15 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
+    <div className="min-h-screen flex items-center justify-center p-4" style={{ backgroundColor: '#F4F5F7' }}>
       <div className="bg-white rounded-2xl shadow-xl max-w-md w-full border border-gray-100 overflow-hidden">
         {/* Branding header banner */}
-        <div className="bg-indigo-600 px-8 py-10 text-center text-white relative">
+        <div className="px-8 py-10 text-center text-white relative" style={{ background: 'linear-gradient(135deg, #0747A6 0%, #0052CC 100%)' }}>
           <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mx-auto mb-4 border border-white/20">
             <LogIn size={24} />
           </div>
           <h2 className="text-2xl font-bold tracking-tight">Manufacturing CRM</h2>
-          <p className="text-xs text-indigo-200 mt-1 uppercase tracking-widest font-semibold">
+          <p className="text-xs text-blue-100 mt-1 uppercase tracking-widest font-semibold">
             Sales & BDA Portal
           </p>
         </div>
@@ -69,7 +69,7 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="bda@crm.com"
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl py-3 pl-10 pr-4 text-sm font-medium text-gray-700 placeholder-gray-400 outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 transition-all"
+                className="w-full bg-gray-50 border border-gray-200 rounded-xl py-3 pl-10 pr-4 text-sm font-medium text-gray-700 placeholder-gray-400 outline-none focus:bg-white focus:border-blue-600 focus:ring-2 focus:ring-blue-100 transition-all"
               />
             </div>
           </div>
@@ -89,7 +89,7 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl py-3 pl-10 pr-4 text-sm font-medium text-gray-700 placeholder-gray-400 outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 transition-all"
+                className="w-full bg-gray-50 border border-gray-200 rounded-xl py-3 pl-10 pr-4 text-sm font-medium text-gray-700 placeholder-gray-400 outline-none focus:bg-white focus:border-blue-600 focus:ring-2 focus:ring-blue-100 transition-all"
               />
             </div>
           </div>
@@ -98,7 +98,8 @@ const Login = () => {
           <button
             type="submit"
             disabled={submitting}
-            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl py-3.5 text-sm font-semibold tracking-wide shadow-md shadow-indigo-600/10 transition-all flex items-center justify-center gap-2 mt-2 disabled:opacity-50"
+            className="w-full hover:opacity-95 text-white rounded-xl py-3.5 text-sm font-semibold tracking-wide shadow-md shadow-blue-500/10 transition-all flex items-center justify-center gap-2 mt-2 disabled:opacity-50"
+            style={{ backgroundColor: '#0052CC' }}
           >
             <span>{submitting ? 'Authenticating...' : 'Sign In'}</span>
           </button>

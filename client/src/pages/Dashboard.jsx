@@ -107,7 +107,7 @@ const Dashboard = () => {
               title="Total Revenue" 
               value={formatCurrency(stats?.totalRevenue || 0)} 
               icon={DollarSign} 
-              color="indigo" 
+              color="blue" 
             />
             <StatCard 
               title="Overdue Followups" 
@@ -130,7 +130,7 @@ const Dashboard = () => {
               </div>
               <div className="sm:text-right">
                 <span className="text-xs font-bold text-gray-400 uppercase tracking-wider block">Target / Achieved</span>
-                <span className="text-sm font-bold text-indigo-600">
+                <span className="text-sm font-bold text-blue-600">
                   {formatCurrency(stats?.totalRevenue || 0)}
                 </span>
                 <span className="text-xs text-gray-400 font-semibold mx-1">/</span>
@@ -144,7 +144,7 @@ const Dashboard = () => {
             <div>
               <div className="w-full bg-gray-100 rounded-full h-3.5 overflow-hidden">
                 <div 
-                  className="bg-indigo-600 h-full rounded-full transition-all duration-500 ease-out"
+                  className="bg-blue-600 h-full rounded-full transition-all duration-500 ease-out"
                   style={{ 
                     width: `${Math.min(
                       100, 
@@ -157,7 +157,7 @@ const Dashboard = () => {
               </div>
               <div className="flex justify-between items-center text-xs font-bold text-gray-400 mt-2 uppercase tracking-wider">
                 <span>0%</span>
-                <span className="text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded text-[10px]">
+                <span className="text-blue-600 bg-blue-50 px-2 py-0.5 rounded text-[10px]">
                   {stats?.monthlyTarget > 0 
                     ? `${Math.round((stats.totalRevenue / stats.monthlyTarget) * 100)}% Completed`
                     : 'No Target Set'}
@@ -185,7 +185,7 @@ const Dashboard = () => {
                       <XAxis dataKey="status" stroke="#9CA3AF" fontSize={11} tickLine={false} />
                       <YAxis stroke="#9CA3AF" fontSize={11} tickLine={false} />
                       <Tooltip cursor={{ fill: '#F3F4F6' }} />
-                      <Bar dataKey="Leads" fill="#6366F1" radius={[4, 4, 0, 0]} />
+                      <Bar dataKey="Leads" fill="#0052CC" radius={[4, 4, 0, 0]} />
                     </BarChart>
                   </ResponsiveContainer>
                 )}
@@ -215,7 +215,7 @@ const Dashboard = () => {
                         dataKey="value"
                       >
                         {pieData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={SCORE_COLORS[entry.name] || '#6366F1'} />
+                          <Cell key={`cell-${index}`} fill={SCORE_COLORS[entry.name] || '#0052CC'} />
                         ))}
                       </Pie>
                       <Tooltip />

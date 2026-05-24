@@ -8,7 +8,7 @@ const followupRoutes = require('./followUpRoutes');
 const reportsRoutes = require('./reportRoutes');
 const productRoutes = require('./productRoutes');
 
-// Mount sub-routers under specific paths
+// wire up all the endpoints
 router.use('/auth', authRoutes);
 router.use('/leads', leadRoutes);
 router.use('/clients', clientRoutes);

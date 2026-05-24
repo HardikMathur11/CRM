@@ -1,10 +1,9 @@
 const Product = require('../models/Product');
 
-// @desc    Get all active products
-// @route   GET /api/products
-// @access  Private
+// list all products that are currently active
 const getProducts = async (req, res) => {
   try {
+    console.log('getting active products list');
     const products = await Product.find({ isActive: true }).sort({ name: 1 });
     res.json(products);
   } catch (error) {
@@ -13,12 +12,11 @@ const getProducts = async (req, res) => {
   }
 };
 
-// @desc    Create a new product
-// @route   POST /api/products
-// @access  Private/Admin/Manager
+// add product to catalog
 const createProduct = async (req, res) => {
   const { name, description, price, category, sku } = req.body;
   try {
+    console.log('adding product name:', name);
     const productExists = await Product.findOne({ name });
     if (productExists) {
       return res.status(400).json({ message: 'Product already exists with this name' });
@@ -37,11 +35,10 @@ const createProduct = async (req, res) => {
   }
 };
 
-// @desc    Update a product
-// @route   PUT /api/products/:id
-// @access  Private/Admin/Manager
+// edit product details
 const updateProduct = async (req, res) => {
   try {
+    console.log('updating product ID:', req.params.id);
     const product = await Product.findById(req.params.id);
     if (!product) {
       return res.status(404).json({ message: 'Product not found' });

@@ -1,11 +1,10 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
-// @desc    Auth user & get token
-// @route   POST /api/auth/login
-// @access  Public
+// user login
 const login = async (req, res) => {
   const { email, password } = req.body;
+  console.log('login attempt for email:', email);
 
   try {
     if (!email || !password) {
@@ -26,6 +25,8 @@ const login = async (req, res) => {
       expiresIn: '30d'
     });
 
+    console.log('login success for:', user.email);
+
     res.json({
       token,
       user: {
@@ -43,22 +44,20 @@ const login = async (req, res) => {
   }
 };
 
-// @desc    Get current user profile
-// @route   GET /api/auth/me
-// @access  Private
+// get current logged in user info
 const getMe = async (req, res) => {
   try {
+    console.log('fetching details for user:', req.user?._id);
     res.json(req.user);
   } catch (error) {
     res.status(500).json({ message: 'Server error' });
   }
 };
 
-// @desc    Create a new user (team member)
-// @route   POST /api/auth/create-user
-// @access  Private/Admin
+// admin only route to create team members
 const createUser = async (req, res) => {
   const { name, email, password, role, phone, monthlyTarget } = req.body;
+  console.log('creating user:', email, 'with role:', role);
 
   try {
     const userExists = await User.findOne({ email });
@@ -92,12 +91,11 @@ const createUser = async (req, res) => {
   }
 };
 
-// @desc    Get all active team members (users)
-// @route   GET /api/auth/users
-// @access  Private
+// get all active team members
 const getUsers = async (req, res) => {
   try {
     const users = await User.find({ isActive: true }).select('name email role');
+    console.log('active users fetched:', users.length);
     res.json(users);
   } catch (error) {
     console.log('Get users error:', error);

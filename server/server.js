@@ -6,26 +6,29 @@ const connectDB = require('./src/config/db');
 
 const app = express();
 
-// Middlewares
-app.use(cors());
+// standard middleware stuff
+app.use(cors({
+  origin: process.env.CLIENT_URL,
+  credentials: true
+}));
 app.use(express.json());
 app.use(morgan('dev'));
 
 const PORT = process.env.PORT || 5000;
 
-// Connect to MongoDB
+// connect to DB
 connectDB();
 
-
-// Test Route
+// quick test route
 app.get('/', (req, res) => {
   res.send('Manufacturing CRM API is running...');
 });
 
-// Import and use main routes router
+// import all route groups
 app.use('/api', require('./src/routes'));
 
-// Start Server
+// let's start the server
 app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`);
+  console.log(`server running on port ${PORT}...`);
+  console.log(`client url is: ${process.env.CLIENT_URL}`);
 });

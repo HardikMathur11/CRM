@@ -7,6 +7,14 @@ export default {
   theme: {
     extend: {
       colors: {
+        'jira-blue': '#0052CC',
+        'jira-blue-dark': '#0747A6',
+        'jira-dark': '#091E42',
+        'jira-navy-card': '#172B4D',
+        'jira-orange': '#FFAB00',
+        'jira-orange-hover': '#FF991F',
+        'jira-light-blue': '#DEEBFF',
+        'jira-light-gray': '#F4F5F7',
         primary: {
           50: '#eef2ff',
           100: '#e0e7ff',

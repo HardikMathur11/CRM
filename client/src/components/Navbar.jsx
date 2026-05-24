@@ -6,13 +6,13 @@ const Navbar = ({ title }) => {
   const { user, logout } = useContext(AuthContext);
 
   return (
-    <header className="flex items-center justify-between bg-white border-b border-gray-100 px-8 py-4 shadow-sm">
+    <header className="flex items-center justify-between bg-white border-b border-gray-100 px-8 py-6 shadow-sm">
       <h1 className="text-2xl font-bold text-gray-800">{title || 'Dashboard'}</h1>
 
       {user && (
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center">
+            <div className="w-9 h-9 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center">
               <User size={18} />
             </div>
             <div className="text-sm">

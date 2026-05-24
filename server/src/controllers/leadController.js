@@ -1,11 +1,10 @@
 const Lead = require('../models/Lead');
 const Client = require('../models/Client');
 
-// @desc    Get all leads
-// @route   GET /api/leads
-// @access  Private
+// pull all leads, filter if it is a BDA
 const getLeads = async (req, res) => {
   try {
+    console.log('fetching leads for user:', req.user._id);
     let query = {};
     if (req.user.role === 'bda') {
       query.assignedTo = req.user._id;
@@ -24,12 +23,11 @@ const getLeads = async (req, res) => {
   }
 };
 
-// @desc    Create a new lead
-// @route   POST /api/leads
-// @access  Private
+// add a brand new lead
 const createLead = async (req, res) => {
   const { contactName, companyName, phone, email, status, priority, estimatedValue, leadSource, location, assignedTo } = req.body;
   try {
+    console.log('creating lead for company:', companyName);
     const lead = new Lead({
       contactName,
       companyName,
@@ -51,11 +49,10 @@ const createLead = async (req, res) => {
   }
 };
 
-// @desc    Get a single lead by ID
-// @route   GET /api/leads/:id
-// @access  Private
+// fetch single lead by id
 const getLeadById = async (req, res) => {
   try {
+    console.log('getting lead details for:', req.params.id);
     const lead = await Lead.findById(req.params.id)
       .populate('assignedTo', 'name email')
       .populate('createdBy', 'name email');
@@ -69,9 +66,7 @@ const getLeadById = async (req, res) => {
   }
 };
 
-// @desc    Update a lead
-// @route   PUT /api/leads/:id
-// @access  Private
+// save updates to lead
 const updateLead = async (req, res) => {
   try {
     let lead = await Lead.findById(req.params.id);
@@ -90,9 +85,7 @@ const updateLead = async (req, res) => {
   }
 };
 
-// @desc    Delete a lead
-// @route   DELETE /api/leads/:id
-// @access  Private
+// delete lead
 const deleteLead = async (req, res) => {
   try {
     const lead = await Lead.findByIdAndDelete(req.params.id);
@@ -106,9 +99,7 @@ const deleteLead = async (req, res) => {
   }
 };
 
-// @desc    Add a note to a lead
-// @route   POST /api/leads/:id/notes
-// @access  Private
+// append a quick note
 const addNote = async (req, res) => {
   const { text } = req.body;
   try {
@@ -128,12 +119,11 @@ const addNote = async (req, res) => {
   }
 };
 
-// @desc    Convert lead to a client
-// @route   POST /api/leads/:id/convert
-// @access  Private
+// move lead to client table when won
 const convertLead = async (req, res) => {
   const { gstNumber, city, state } = req.body;
   try {
+    console.log('converting lead:', req.params.id, 'to client');
     const lead = await Lead.findById(req.params.id);
     if (!lead) {
       return res.status(404).json({ message: 'Lead not found' });

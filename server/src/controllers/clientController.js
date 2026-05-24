@@ -1,10 +1,9 @@
 const Client = require('../models/Client');
 
-// @desc    Get all clients
-// @route   GET /api/clients
-// @access  Private
+// get clients, filter if BDA
 const getClients = async (req, res) => {
   try {
+    console.log('fetching clients. user role:', req.user.role);
     let query = {};
     if (req.user.role === 'bda') {
       query.assignedTo = req.user._id;
@@ -20,11 +19,10 @@ const getClients = async (req, res) => {
   }
 };
 
-// @desc    Get client detail by ID
-// @route   GET /api/clients/:id
-// @access  Private
+// specific client details
 const getClientById = async (req, res) => {
   try {
+    console.log('found client details for ID:', req.params.id);
     const client = await Client.findById(req.params.id)
       .populate('assignedTo', 'name email')
       .populate('convertedFrom');

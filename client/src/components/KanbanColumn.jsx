@@ -2,10 +2,10 @@ import React from 'react';
 import LeadCard from './LeadCard';
 
 const KanbanColumn = ({ title, leads = [] }) => {
-  // Calculate total estimated value of leads in this stage
+  // figure out the total value of this column
   const totalValue = leads.reduce((sum, lead) => sum + (lead.estimatedValue || 0), 0);
 
-  // Mapped colors matching status badges
+  // pick headers colors depending on lead stage
   const getHeaderColor = (status) => {
     switch (status) {
       case 'New':

@@ -1,10 +1,9 @@
 const FollowUp = require('../models/FollowUp');
 
-// @desc    Get all follow-ups
-// @route   GET /api/followups
-// @access  Private
+// get list of followups
 const getFollowUps = async (req, res) => {
   try {
+    console.log('fetching followups for user role:', req.user.role);
     let query = {};
     if (req.user.role === 'bda') {
       query.assignedTo = req.user._id;
@@ -20,12 +19,11 @@ const getFollowUps = async (req, res) => {
   }
 };
 
-// @desc    Create a new follow-up
-// @route   POST /api/followups
-// @access  Private
+// schedule a new followup
 const createFollowUp = async (req, res) => {
   const { lead, type, scheduledAt, notes, assignedTo } = req.body;
   try {
+    console.log('saving new followup task...');
     const followup = new FollowUp({
       lead,
       assignedTo: assignedTo || req.user._id,
@@ -42,11 +40,10 @@ const createFollowUp = async (req, res) => {
   }
 };
 
-// @desc    Update a follow-up
-// @route   PUT /api/followups/:id
-// @access  Private
+// update status/notes for a followup
 const updateFollowUp = async (req, res) => {
   try {
+    console.log('updating followup:', req.params.id);
     const followup = await FollowUp.findById(req.params.id);
     if (!followup) {
       return res.status(404).json({ message: 'Follow-up not found' });

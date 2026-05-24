@@ -1,6 +1,6 @@
 # Manufacturing BDA/CRM Portal
 
-Hey! This is a simple, lightweight MERN Stack BDA/CRM application built for a Manufacturing Company. It helps Business Development Associates (BDAs) track leads, manage scheduled follow-ups, and convert won deals into active corporate clients with GST information. It is designed to be very clean, readable, and straightforward to explain in a technical interview!
+Hey! I built this MERN Stack BDA/CRM application for Manufacturing Companies. It helps BDAs track their leads, manage follow-ups, and convert won deals into active corporate clients with GST info. I wanted it to be really clean, readable, and super straightforward to explain in a technical interview!
 
 ## Tech Stack
 

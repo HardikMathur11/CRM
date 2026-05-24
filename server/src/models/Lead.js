@@ -84,7 +84,7 @@ const leadSchema = new mongoose.Schema({
   }
 }, { timestamps: true });
 
-// Pre-save hook to calculate lead score automatically using external scoring function
+// run lead scoring rules before save
 leadSchema.pre('save', function (next) {
   this.score = calculateLeadScore(this.priority, this.status);
   next();

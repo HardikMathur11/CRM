@@ -34,7 +34,7 @@ const LeadDetail = () => {
   const [showConvertModal, setShowConvertModal] = useState(false);
   const [convertForm, setConvertForm] = useState({ gstNumber: '', city: '', state: '' });
   
-  // Follow-up scheduling form state
+  // state for the followup scheduler modal
   const [showFollowUpForm, setShowFollowUpForm] = useState(false);
   const [followupForm, setFollowupForm] = useState({
     type: 'Call',
@@ -88,7 +88,8 @@ const LeadDetail = () => {
       toast.success('Follow-up scheduled successfully!');
       setShowFollowUpForm(false);
       setFollowupForm({ type: 'Call', scheduledAt: '', notes: '' });
-      fetchLeadDetails(); // Refresh page data
+      // grab updated lead info
+      fetchLeadDetails();
     } catch (error) {
       toast.error('Failed to schedule follow-up.');
     }
@@ -132,7 +133,7 @@ const LeadDetail = () => {
         <Navbar title="Lead Workspace" />
 
         <main className="flex-1 overflow-y-auto p-8 space-y-6">
-          {/* Header Card */}
+          {/* header section */}
           <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="space-y-1.5">
               <h2 className="text-xl font-bold text-gray-800">{lead.companyName}</h2>
@@ -146,7 +147,7 @@ const LeadDetail = () => {
               </div>
             </div>
 
-            {/* Convert Deal Action */}
+            {/* button to convert lead to client */}
             {!lead.isConverted && lead.status !== 'Lost' && (
               <button
                 onClick={() => setShowConvertModal(true)}
@@ -159,7 +160,7 @@ const LeadDetail = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Left Panel: Detailed Info */}
+            {/* details column */}
             <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm space-y-5">
               <h3 className="font-bold text-gray-800 text-sm border-b border-gray-50 pb-3">Lead Information</h3>
 

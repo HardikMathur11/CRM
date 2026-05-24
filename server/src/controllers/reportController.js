@@ -2,11 +2,10 @@ const Lead = require('../models/Lead');
 const Client = require('../models/Client');
 const FollowUp = require('../models/FollowUp');
 
-// @desc    Get summary statistics for dashboard charts
-// @route   GET /api/reports/summary
-// @access  Private
+// get overview stats for dashboard
 const getSummary = async (req, res) => {
   try {
+    console.log('getting stats summary for user:', req.user.role);
     let filter = {};
     if (req.user.role === 'bda') {
       filter.assignedTo = req.user._id;
@@ -24,7 +23,7 @@ const getSummary = async (req, res) => {
     const convertedFilter = { ...filter, isConverted: true };
     const totalConversions = await Lead.countDocuments(convertedFilter);
 
-    // Count overdue follow-ups (Pending and scheduled date is in the past)
+    // count how many followups are late
     const overdueFollowUps = await FollowUp.countDocuments({
       ...filter,
       status: 'Pending',
@@ -57,11 +56,10 @@ const getSummary = async (req, res) => {
   }
 };
 
-// @desc    Export client list to CSV format
-// @route   GET /api/reports/export-csv
-// @access  Private
+// export active client list as csv
 const exportCSV = async (req, res) => {
   try {
+    console.log('generating csv file download for clients...');
     let filter = {};
     if (req.user.role === 'bda') {
       filter.assignedTo = req.user._id;
@@ -70,7 +68,7 @@ const exportCSV = async (req, res) => {
     const clients = await Client.find(filter).populate('assignedTo', 'name');
 
     let csv = 'Company Name,Contact Name,Phone,Email,GST Number,City,State,Assigned To,Revenue\n';
-    
+
     clients.forEach(c => {
       const assignedName = c.assignedTo ? c.assignedTo.name : 'N/A';
       csv += `"${c.companyName.replace(/"/g, '""')}","${c.contactName.replace(/"/g, '""')}","${c.phone}","${c.email}","${c.gstNumber}","${c.city}","${c.state}","${assignedName}",${c.totalRevenue}\n`;
