@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
-import api from '../api/axios';
+import axiosInstance from '../api/axiosInstance';
 
 export const AuthContext = createContext();
 
@@ -7,7 +7,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Check if user is logged in on mount
+  // Restore user session on mount
   useEffect(() => {
     const checkLoginStatus = async () => {
       const token = localStorage.getItem('token');
@@ -17,10 +17,10 @@ export const AuthProvider = ({ children }) => {
       }
 
       try {
-        const response = await api.get('/auth/me');
+        const response = await axiosInstance.get('/auth/me');
         setUser(response.data);
       } catch (error) {
-        console.log('Failed to restore login session', error);
+        console.log('Failed to restore session:', error);
         localStorage.removeItem('token');
         setUser(null);
       } finally {
@@ -34,15 +34,15 @@ export const AuthProvider = ({ children }) => {
   // Login handler
   const login = async (email, password) => {
     try {
-      const response = await api.post('/auth/login', { email, password });
+      const response = await axiosInstance.post('/auth/login', { email, password });
       const { token, user: userData } = response.data;
 
       localStorage.setItem('token', token);
       setUser(userData);
       return { success: true };
     } catch (error) {
-      console.log('Login request failed', error);
-      const message = error.response?.data?.message || 'Login failed. Please check credentials.';
+      console.log('Login error:', error);
+      const message = error.response?.data?.message || 'Login failed. Check credentials.';
       return { success: false, message };
     }
   };
