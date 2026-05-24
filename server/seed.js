@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-const User = require('./models/User');
-const Lead = require('./models/Lead');
-const Client = require('./models/Client');
-const FollowUp = require('./models/FollowUp');
+const User = require('./src/models/User');
+const Lead = require('./src/models/Lead');
+const Client = require('./src/models/Client');
+const FollowUp = require('./src/models/FollowUp');
 
 const seedDatabase = async () => {
   try {

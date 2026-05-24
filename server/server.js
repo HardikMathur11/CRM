@@ -22,12 +22,8 @@ app.get('/', (req, res) => {
   res.send('Manufacturing CRM API is running...');
 });
 
-// Import and use routes
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/leads', require('./routes/leads'));
-app.use('/api/clients', require('./routes/clients'));
-app.use('/api/followups', require('./routes/followups'));
-app.use('/api/reports', require('./routes/reports'));
+// Import and use main routes router
+app.use('/api', require('./src/routes'));
 
 // Start Server
 app.listen(PORT, () => {

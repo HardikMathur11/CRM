@@ -1,10 +1,9 @@
-const express = require('express');
-const router = express.Router();
 const Client = require('../models/Client');
-const { protect } = require('../middleware/auth');
 
-// GET /api/clients - Fetch all clients (BDAs view only assigned clients)
-router.get('/', protect, async (req, res) => {
+// @desc    Get all clients
+// @route   GET /api/clients
+// @access  Private
+const getClients = async (req, res) => {
   try {
     let query = {};
     if (req.user.role === 'bda') {
@@ -19,10 +18,12 @@ router.get('/', protect, async (req, res) => {
     console.log('Get clients error:', error);
     res.status(500).json({ message: 'Server error fetching clients' });
   }
-});
+};
 
-// GET /api/clients/:id - Fetch single client details
-router.get('/:id', protect, async (req, res) => {
+// @desc    Get client detail by ID
+// @route   GET /api/clients/:id
+// @access  Private
+const getClientById = async (req, res) => {
   try {
     const client = await Client.findById(req.params.id)
       .populate('assignedTo', 'name email')
@@ -35,6 +36,9 @@ router.get('/:id', protect, async (req, res) => {
     console.log('Get client detail error:', error);
     res.status(500).json({ message: 'Server error fetching client detail' });
   }
-});
+};
 
-module.exports = router;
+module.exports = {
+  getClients,
+  getClientById
+};

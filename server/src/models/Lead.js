@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const calculateLeadScore = require('../utils/leadScoring');
 
 const noteSchema = new mongoose.Schema({
   text: {
@@ -83,19 +84,9 @@ const leadSchema = new mongoose.Schema({
   }
 }, { timestamps: true });
 
-// Pre-save hook to calculate lead score automatically
+// Pre-save hook to calculate lead score automatically using external scoring function
 leadSchema.pre('save', function (next) {
-  const priority = this.priority;
-  const status = this.status;
-
-  if (priority === 'High' && (status === 'Proposal Sent' || status === 'Negotiation' || status === 'Won')) {
-    this.score = 'Hot';
-  } else if (priority === 'Medium' || status === 'Contacted' || status === 'Qualified') {
-    this.score = 'Warm';
-  } else {
-    this.score = 'Cold';
-  }
-
+  this.score = calculateLeadScore(this.priority, this.status);
   next();
 });
 

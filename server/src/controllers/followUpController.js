@@ -1,10 +1,9 @@
-const express = require('express');
-const router = express.Router();
 const FollowUp = require('../models/FollowUp');
-const { protect } = require('../middleware/auth');
 
-// GET /api/followups - Fetch followups (BDAs see only their assigned follow-ups)
-router.get('/', protect, async (req, res) => {
+// @desc    Get all follow-ups
+// @route   GET /api/followups
+// @access  Private
+const getFollowUps = async (req, res) => {
   try {
     let query = {};
     if (req.user.role === 'bda') {
@@ -13,16 +12,18 @@ router.get('/', protect, async (req, res) => {
     const followups = await FollowUp.find(query)
       .populate('lead', 'contactName companyName phone status score')
       .populate('assignedTo', 'name email')
-      .sort({ scheduledAt: 1 }); // Sort by scheduled date ascending
+      .sort({ scheduledAt: 1 });
     res.json(followups);
   } catch (error) {
     console.log('Get followups error:', error);
     res.status(500).json({ message: 'Server error fetching followups' });
   }
-});
+};
 
-// POST /api/followups - Create new follow-up
-router.post('/', protect, async (req, res) => {
+// @desc    Create a new follow-up
+// @route   POST /api/followups
+// @access  Private
+const createFollowUp = async (req, res) => {
   const { lead, type, scheduledAt, notes, assignedTo } = req.body;
   try {
     const followup = new FollowUp({
@@ -39,10 +40,12 @@ router.post('/', protect, async (req, res) => {
     console.log('Create followup error:', error);
     res.status(500).json({ message: 'Server error creating followup' });
   }
-});
+};
 
-// PUT /api/followups/:id - Update follow-up (e.g. mark as Done, update notes, outcome)
-router.put('/:id', protect, async (req, res) => {
+// @desc    Update a follow-up
+// @route   PUT /api/followups/:id
+// @access  Private
+const updateFollowUp = async (req, res) => {
   try {
     const followup = await FollowUp.findById(req.params.id);
     if (!followup) {
@@ -58,6 +61,10 @@ router.put('/:id', protect, async (req, res) => {
     console.log('Update followup error:', error);
     res.status(500).json({ message: 'Server error updating followup' });
   }
-});
+};
 
-module.exports = router;
+module.exports = {
+  getFollowUps,
+  createFollowUp,
+  updateFollowUp
+};
