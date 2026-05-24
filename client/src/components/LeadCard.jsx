@@ -38,7 +38,7 @@ const LeadCard = ({ lead }) => {
           </h4>
         </div>
         <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${getScoreColor(lead.score)}`}>
-          {lead.score === 'Hot' ? '🔥 Hot' : lead.score === 'Warm' ? '🌡️ Warm' : '🧊 Cold'}
+          {lead.score}
         </span>
       </div>
 

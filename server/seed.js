@@ -26,7 +26,7 @@ const seedDatabase = async () => {
     const admin = await User.create({
       name: 'Admin User',
       email: 'admin@crm.com',
-      password: 'admin123',
+      password: 'admin1234',
       role: 'admin',
       phone: '9876543210',
       monthlyTarget: 100000,
@@ -36,7 +36,7 @@ const seedDatabase = async () => {
     const manager = await User.create({
       name: 'Manager User',
       email: 'manager@crm.com',
-      password: 'manager123',
+      password: 'manager1234',
       role: 'manager',
       phone: '9876543211',
       monthlyTarget: 75000,
@@ -46,7 +46,7 @@ const seedDatabase = async () => {
     const bda = await User.create({
       name: 'BDA User',
       email: 'bda@crm.com',
-      password: 'bda123',
+      password: 'bda1234',
       role: 'bda',
       phone: '9876543212',
       monthlyTarget: 50000,
@@ -110,7 +110,26 @@ const seedDatabase = async () => {
       ]
     });
 
-    console.log('Seeded 3 sample leads successfully.');
+    const lead4 = await Lead.create({
+      contactName: 'Rajesh Gupta',
+      companyName: 'Gupta Steel Fabricators',
+      phone: '9871234560',
+      email: 'rajesh@guptasteel.com',
+      status: 'Won',
+      priority: 'High',
+      estimatedValue: 45000,
+      leadSource: 'Direct',
+      location: 'Faridabad, HR',
+      assignedTo: bda._id,
+      createdBy: bda._id,
+      isConverted: true,
+      convertedAt: new Date(),
+      notes: [
+        { text: 'Onboarding completed and billing setup done.', addedBy: 'BDA User' }
+      ]
+    });
+
+    console.log('Seeded 4 sample leads successfully.');
 
     // 3. Seed Client (Converted from lead3)
     const client = await Client.create({
@@ -127,7 +146,21 @@ const seedDatabase = async () => {
       isActive: true
     });
 
-    console.log('Seeded 1 client converted from Lead.');
+    const client2 = await Client.create({
+      companyName: lead4.companyName,
+      contactName: lead4.contactName,
+      phone: lead4.phone,
+      email: lead4.email,
+      gstNumber: '06BBBBP8734A1Z3',
+      city: 'Faridabad',
+      state: 'Haryana',
+      convertedFrom: lead4._id,
+      assignedTo: bda._id,
+      totalRevenue: 45000,
+      isActive: true
+    });
+
+    console.log('Seeded 2 clients converted from Leads.');
 
     // 4. Seed FollowUps
     await FollowUp.create({

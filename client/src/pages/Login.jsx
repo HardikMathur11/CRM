@@ -112,15 +112,15 @@ const Login = () => {
           <div className="grid grid-cols-3 gap-1 text-[10px] text-gray-500 font-medium mt-1.5">
             <div>
               <span className="font-bold block">Admin</span>
-              <span>admin@crm.com / admin123</span>
+              <span>admin@crm.com / admin1234</span>
             </div>
             <div>
               <span className="font-bold block">Manager</span>
-              <span>manager@crm.com / manager123</span>
+              <span>manager@crm.com / manager1234</span>
             </div>
             <div>
               <span className="font-bold block">BDA</span>
-              <span>bda@crm.com / bda123</span>
+              <span>bda@crm.com / bda1234</span>
             </div>
           </div>
         </div>

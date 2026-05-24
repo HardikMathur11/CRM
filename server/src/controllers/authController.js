@@ -92,8 +92,22 @@ const createUser = async (req, res) => {
   }
 };
 
+// @desc    Get all active team members (users)
+// @route   GET /api/auth/users
+// @access  Private
+const getUsers = async (req, res) => {
+  try {
+    const users = await User.find({ isActive: true }).select('name email role');
+    res.json(users);
+  } catch (error) {
+    console.log('Get users error:', error);
+    res.status(500).json({ message: 'Server error fetching team members' });
+  }
+};
+
 module.exports = {
   login,
   getMe,
-  createUser
+  createUser,
+  getUsers
 };
