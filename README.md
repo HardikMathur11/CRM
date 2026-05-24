@@ -1,60 +1,98 @@
 # Manufacturing BDA/CRM Portal
 
-Hey! I built this MERN Stack BDA/CRM application for Manufacturing Companies. It helps BDAs track their leads, manage follow-ups, and convert won deals into active corporate clients with GST info. I wanted it to be really clean, readable, and super straightforward to explain in a technical interview!
+Hey! I built this MERN Stack BDA/CRM portal specifically for manufacturing sales teams. In manufacturing, sales aren't just simple transactional checkouts—they have long cycles, custom negotiations, role-based handoffs, and final invoicing that requires GST details. 
 
-## Tech Stack
+I wanted this application to be clean, responsive, and easy to explain in a tech interview. Everything from authorization levels to the Kanban pipeline is fully functional.
 
-- **Frontend**: React.js (Vite), Tailwind CSS, Recharts (for analytics), Lucide React (icons), React Router DOM v6, Axios, React Hot Toast
-- **Backend**: Node.js, Express.js, MongoDB (Mongoose), JWT, bcryptjs, Morgan, CORS, Dotenv
+---
 
-## Key Features
+## Key Features I Built
 
-- **Role-based Authentication**: Admin, Manager, and BDA portals with protected routes.
-- **Leads Pipeline**: Grid tables and horizontal Kanban board layouts to track leads by status and priority.
-- **Automatic Lead Scoring**: Automatically calculates warmth index (Hot, Warm, Cold) using pre-save Mongoose database hooks.
-- **Client Onboarding**: Transition won leads directly into active client profiles, recording GST numbers, cities, and states.
-- **Scheduled Follow-ups**: Follow-up scheduler to track calls, emails, and meetings with overdue status alerts.
-- **Sales Analytics Reports**: Dynamic analytics charts detailing status distributions and client exports in CSV format.
+*   **Role-Based Access Control**:
+    *   **Admin**: Team management (onboarding new BDAs/Managers), setting monthly targets, and full catalog access.
+    *   **Manager**: Auditing leads pipeline, monitoring sales progress charts, and managing products catalog.
+    *   **BDA**: Personal workspace focused on managing assigned leads, scheduling follow-ups, and converting won deals.
+*   **Active Leads Pipeline**:
+    *   I built a clean **Kanban Board** and a details list showing lead state progressions.
+    *   **Mongoose Hook Lead Scoring**: Automatically calculates warmth index (`Hot`, `Warm`, `Cold`) using database pre-save triggers depending on status and value priority.
+*   **Client Transition Onboarding**:
+    *   A single button transitions a won lead into an active Client profile, requesting mandatory business details like GST number, city, and state.
+*   **Follow-up Scheduler**:
+    *   Keeps track of upcoming and overdue calls, emails, site visits, or WhatsApp follow-ups.
+*   **Interactive Sales Charts**:
+    *   Includes visual reporting for lead statistics, status spreads, and a quick CSV client download exporter.
 
-## Demo Credentials
+---
 
-- **Admin**: `admin@crm.com` / `admin1234`
-- **Manager**: `manager@crm.com` / `manager1234`
-- **BDA**: `bda@crm.com` / `bda1234`
+## The Tech Stack
 
-## Environment Variables (.env)
+*   **Frontend**: React (Vite), Tailwind CSS, Recharts, Lucide React, React Hot Toast
+*   **Backend**: Node.js, Express.js, MongoDB (Mongoose)
+*   **Security/Auth**: JSON Web Tokens (JWT) & bcryptjs (password hashing)
+*   **Logger/HTTP**: Morgan, CORS, Dotenv
 
-Set up a `.env` file in the `server` directory with the following variables:
+---
 
+## Running It Locally
+
+Here is how you can set it up on your own machine.
+
+### 1. Set Up Environment Files
+Create a `.env` file in the `server` directory:
 ```env
 PORT=5000
-MONGO_URI=mongodb+srv://hardikmathur11:Mongowithhardik@cluster0.0stebd8.mongodb.net/crm-bda
-JWT_SECRET=supersecretjwtkeyforauth123
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=supersecretjwtkeyforauth1234
+CLIENT_URL=http://localhost:5173
 ```
 
-For the frontend, set up a `.env` in the `client` directory (Vite reads this):
-
+Create a `.env` file in the `client` directory:
 ```env
 VITE_API_URL=http://localhost:5000/api
 ```
 
-## How to Run Locally
-
-### 1. Run the Backend Server
+### 2. Install & Start Backend
+Open a terminal in the root directory:
 ```bash
 cd server
 npm install
-# Seed the database with demo users, leads, and products:
+
+# Seed the database with the mock test users and sample leads:
 npm run seed
-# Start the backend server in development mode:
+
+# Run the dev server:
 npm run dev
 ```
 
-### 2. Run the Frontend Client
+### 3. Install & Start Frontend
+Open a new terminal in the root directory:
 ```bash
 cd client
 npm install
-# Start the Vite development server:
+
+# Run the Vite dev server:
 npm run dev
 ```
-Open `http://localhost:5173` in your browser.
+Now open `http://localhost:5173` to view the landing page!
+
+---
+
+## Demo Access Credentials
+You can log in as any of these pre-seeded roles to test:
+
+*   **Admin Access**:
+    *   *Email*: `admin@crm.com`
+    *   *Password*: `admin1234`
+*   **Manager Access**:
+    *   *Email*: `manager@crm.com`
+    *   *Password*: `manager1234`
+*   **BDA Access**:
+    *   *Email*: `bda@crm.com`
+    *   *Password*: `bda1234`
+
+---
+
+## Production Configurations
+
+*   **Backend (Render)**: Set up with `render.yaml` infrastructure-as-code to deploy directly from sub-directory `server/`.
+*   **Frontend (Vercel)**: Configured with `vercel.json` rewrite routing rules to ensure SPA routes reload correctly without throwing 404 errors.
