@@ -1,8 +1,8 @@
 # Manufacturing BDA/CRM Portal
 
-Hey! I built this MERN Stack BDA/CRM portal specifically for manufacturing sales teams. In manufacturing, sales aren't just simple transactional checkouts—they have long cycles, custom negotiations, role-based handoffs, and final invoicing that requires GST details. 
+Hey! I built this MERN Stack BDA(Business Development Associate)/CRM( Customer Relationship Management) portal for manufacturing sales professionals as per given module in Assessment. In manufacturing, sales aren't just simple transactional checkouts—they have long cycles, custom negotiations, role-based handoffs, and final invoicing that requires GST details. 
 
-I designed it to demonstrate clean model-controller-router architecture, robust authentication/role middleware, and a responsive interface with real-time analytics. Everything from authorization levels to the Kanban pipeline is fully production-ready.
+I designed it to demonstrate clean model-controller-router architecture, robust authentication/role middleware, and a responsive interface with real-time analytics.I took UI inspiration from Jira dashboard module Everything from authorization levels to the Kanban pipeline is fully production-ready.
 
 ---
 
@@ -29,7 +29,7 @@ I designed it to demonstrate clean model-controller-router architecture, robust 
 *   **Frontend**: React (Vite), Tailwind CSS, Recharts, Lucide React, React Hot Toast
 *   **Backend**: Node.js, Express.js, MongoDB (Mongoose)
 *   **Security/Auth**: JSON Web Tokens (JWT) & bcryptjs (password hashing)
-*   **Logger/HTTP**: Morgan, CORS, Dotenv
+*   **Logger/HTTP**: Morgan, CORS, Dotenv, Axios
 
 ---
 
