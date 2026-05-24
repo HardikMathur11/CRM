@@ -73,13 +73,13 @@ const TeamOverview = () => {
         <Navbar title="Team Workspace" />
 
         {/* Action Header bar */}
-        <div className="bg-white border-b border-gray-100 p-6 flex items-center justify-between">
+        <div className="bg-white border-b border-gray-100 p-4 md:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
             Manage roles & monthly revenue targets
           </p>
           <button
             onClick={() => setShowAddForm(true)}
-            className="flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md shadow-indigo-600/10 transition-all"
+            className="flex items-center justify-between bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md shadow-indigo-600/10 transition-all self-start sm:self-center"
           >
             <Plus size={16} />
             <span>Add Team Member</span>
@@ -87,7 +87,7 @@ const TeamOverview = () => {
         </div>
 
         {/* Team Members List */}
-        <main className="flex-1 overflow-auto p-8">
+        <main className="flex-1 overflow-auto p-4 md:p-8">
           {loading ? (
             <div className="h-64 flex items-center justify-center">
               <Loader2 className="w-8 h-8 text-indigo-600 animate-spin" />
@@ -115,17 +115,16 @@ const TeamOverview = () => {
                           </div>
                         </td>
                         <td className="px-6 py-4">
-                          <span className={`px-2 py-0.5 rounded border text-[10px] font-bold uppercase ${
-                            member.role === 'admin' ? 'text-purple-600 bg-purple-50 border-purple-100' :
+                          <span className={`px-2 py-0.5 rounded border text-[10px] font-bold uppercase ${member.role === 'admin' ? 'text-purple-600 bg-purple-50 border-purple-100' :
                             member.role === 'manager' ? 'text-blue-600 bg-blue-50 border-blue-100' :
-                            'text-indigo-600 bg-indigo-50 border-indigo-100'
-                          }`}>
+                              'text-indigo-600 bg-indigo-50 border-indigo-100'
+                            }`}>
                             {member.role}
                           </span>
                         </td>
-                        <td className="px-6 py-4">{member.phone}</td>
+                        <td className="px-6 py-4">99*******99</td>
                         <td className="px-6 py-4 font-bold text-gray-700">
-                          {formatCurrency(member.monthlyTarget)}
+                          {formatCurrency("10000000")}
                         </td>
                         <td className="px-6 py-4">
                           <span className="w-2.5 h-2.5 rounded-full bg-green-500 inline-block shadow-sm shadow-green-500/20" title="Active"></span>
@@ -146,8 +145,8 @@ const TeamOverview = () => {
           <div className="bg-white rounded-2xl shadow-xl w-full max-w-md border border-gray-100 overflow-hidden">
             <div className="px-6 py-5 border-b border-gray-100 flex items-center justify-between">
               <h3 className="font-bold text-gray-800 text-base">Onboard Team Member</h3>
-              <button 
-                onClick={() => setShowAddForm(false)} 
+              <button
+                onClick={() => setShowAddForm(false)}
                 className="text-gray-400 hover:text-gray-600 p-1 hover:bg-gray-100 rounded-lg"
               >
                 <X size={16} />

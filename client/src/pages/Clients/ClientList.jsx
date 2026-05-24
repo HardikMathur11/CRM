@@ -39,7 +39,7 @@ const ClientList = () => {
         <Navbar title="Clients Registry" />
 
         {/* Filter controls header */}
-        <div className="bg-white border-b border-gray-100 p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="bg-white border-b border-gray-100 p-4 md:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="relative w-full md:w-64">
             <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-400">
               <Search size={16} />
@@ -55,7 +55,7 @@ const ClientList = () => {
         </div>
 
         {/* Table View */}
-        <main className="flex-1 overflow-auto p-8">
+        <main className="flex-1 overflow-auto p-4 md:p-8">
           {loading ? (
             <div className="h-64 flex items-center justify-center">
               <Loader2 className="w-8 h-8 text-indigo-600 animate-spin" />

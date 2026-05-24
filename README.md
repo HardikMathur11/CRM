@@ -2,7 +2,7 @@
 
 Hey! I built this MERN Stack BDA/CRM portal specifically for manufacturing sales teams. In manufacturing, sales aren't just simple transactional checkouts—they have long cycles, custom negotiations, role-based handoffs, and final invoicing that requires GST details. 
 
-I wanted this application to be clean, responsive, and easy to explain in a tech interview. Everything from authorization levels to the Kanban pipeline is fully functional.
+I designed it to demonstrate clean model-controller-router architecture, robust authentication/role middleware, and a responsive interface with real-time analytics. Everything from authorization levels to the Kanban pipeline is fully production-ready.
 
 ---
 
@@ -96,3 +96,7 @@ You can log in as any of these pre-seeded roles to test:
 
 *   **Backend (Render)**: Set up with `render.yaml` infrastructure-as-code to deploy directly from sub-directory `server/`.
 *   **Frontend (Vercel)**: Configured with `vercel.json` rewrite routing rules to ensure SPA routes reload correctly without throwing 404 errors.
+
+---
+Developed by Hardik Mathur
+

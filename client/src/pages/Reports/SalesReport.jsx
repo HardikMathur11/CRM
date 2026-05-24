@@ -97,14 +97,14 @@ const SalesReport = () => {
         <Navbar title="Sales & Performance Reports" />
 
         {/* Action Header bar */}
-        <div className="bg-white border-b border-gray-100 p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="bg-white border-b border-gray-100 p-4 md:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
             Review pipeline statistics and download client registry reports
           </p>
           <button
             onClick={handleExportCSV}
             disabled={exporting}
-            className="flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-55 text-white px-4 py-2.5 rounded-xl text-xs font-bold shadow-md shadow-indigo-600/10 transition-all"
+            className="flex items-center justify-between bg-indigo-600 hover:bg-indigo-700 disabled:opacity-55 text-white px-4 py-2.5 rounded-xl text-xs font-bold shadow-md shadow-indigo-600/10 transition-all self-start sm:self-center"
           >
             <Download size={16} />
             <span>{exporting ? 'Exporting...' : 'Export Clients CSV'}</span>
@@ -112,7 +112,7 @@ const SalesReport = () => {
         </div>
 
         {/* Main Dashboard Summary & Charts */}
-        <main className="flex-1 overflow-y-auto p-8 space-y-6">
+        <main className="flex-1 overflow-y-auto p-4 md:p-8 space-y-6">
           {/* Quick Metrics Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 bg-white p-6 border border-gray-100 rounded-xl shadow-sm">
             <div className="space-y-1">

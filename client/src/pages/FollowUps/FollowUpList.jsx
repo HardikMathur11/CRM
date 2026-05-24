@@ -78,7 +78,7 @@ const FollowUpList = () => {
         <Navbar title="Interaction Follow-ups" />
 
         {/* Filters Banner */}
-        <div className="bg-white border-b border-gray-100 p-6 flex items-center gap-2">
+        <div className="bg-white border-b border-gray-100 p-4 md:p-6 flex flex-wrap items-center gap-2">
           {['All', 'Pending', 'Overdue', 'Done'].map(f => (
             <button
               key={f}
@@ -100,7 +100,7 @@ const FollowUpList = () => {
         </div>
 
         {/* Main List */}
-        <main className="flex-1 overflow-y-auto p-8 space-y-4">
+        <main className="flex-1 overflow-y-auto p-4 md:p-8 space-y-4">
           {loading ? (
             <div className="h-64 flex items-center justify-center">
               <Loader2 className="w-8 h-8 text-indigo-600 animate-spin" />

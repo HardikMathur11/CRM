@@ -132,7 +132,7 @@ const LeadDetail = () => {
       <div className="flex-1 flex flex-col overflow-hidden">
         <Navbar title="Lead Workspace" />
 
-        <main className="flex-1 overflow-y-auto p-8 space-y-6">
+        <main className="flex-1 overflow-y-auto p-4 md:p-8 space-y-6">
           {/* header section */}
           <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="space-y-1.5">

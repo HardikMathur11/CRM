@@ -77,14 +77,14 @@ const ProductList = () => {
         <Navbar title="Products Catalogue" />
 
         {/* Action Header bar */}
-        <div className="bg-white border-b border-gray-100 p-6 flex items-center justify-between">
+        <div className="bg-white border-b border-gray-100 p-4 md:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
             Review catalogue items, pricing specs, and stock SKUs
           </p>
           {isAdmin && (
             <button
               onClick={() => setShowAddForm(true)}
-              className="flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold shadow-md shadow-indigo-600/10 transition-all"
+              className="flex items-center justify-between bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold shadow-md shadow-indigo-600/10 transition-all self-start sm:self-center"
             >
               <Plus size={16} />
               <span>Add Product</span>
@@ -93,7 +93,7 @@ const ProductList = () => {
         </div>
 
         {/* Products Grid */}
-        <main className="flex-1 overflow-auto p-8">
+        <main className="flex-1 overflow-auto p-4 md:p-8">
           {loading ? (
             <div className="h-64 flex items-center justify-center">
               <Loader2 className="w-8 h-8 text-indigo-600 animate-spin" />

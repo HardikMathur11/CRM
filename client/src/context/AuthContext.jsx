@@ -53,8 +53,10 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   return (
-    <AuthContext.Provider value={{ user, loading, login, logout, setUser }}>
+    <AuthContext.Provider value={{ user, loading, login, logout, setUser, sidebarOpen, setSidebarOpen }}>
       {children}
     </AuthContext.Provider>
   );

@@ -60,7 +60,7 @@ const ClientDetail = () => {
       <div className="flex-1 flex flex-col overflow-hidden">
         <Navbar title="Client File" />
 
-        <main className="flex-1 overflow-y-auto p-8 space-y-6">
+        <main className="flex-1 overflow-y-auto p-4 md:p-8 space-y-6">
           {/* Header Banner */}
           <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex items-center gap-4">
             <button

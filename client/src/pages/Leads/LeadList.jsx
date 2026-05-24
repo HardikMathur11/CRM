@@ -62,7 +62,7 @@ const LeadList = () => {
         <Navbar title="Leads Management" />
 
         {/* Filters and Controls */}
-        <div className="bg-white border-b border-gray-100 p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="bg-white border-b border-gray-100 p-4 md:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="flex flex-wrap items-center gap-4 flex-1">
             {/* Search Input */}
             <div className="relative w-full md:w-64">
@@ -135,7 +135,7 @@ const LeadList = () => {
         </div>
 
         {/* Main Content */}
-        <main className="flex-1 overflow-auto p-8">
+        <main className="flex-1 overflow-auto p-4 md:p-8">
           {loading ? (
             <div className="h-64 flex items-center justify-center">
               <Loader2 className="w-8 h-8 text-indigo-600 animate-spin" />
