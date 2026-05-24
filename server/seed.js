@@ -5,6 +5,7 @@ const User = require('./src/models/User');
 const Lead = require('./src/models/Lead');
 const Client = require('./src/models/Client');
 const FollowUp = require('./src/models/FollowUp');
+const Product = require('./src/models/Product');
 
 const seedDatabase = async () => {
   try {
@@ -18,6 +19,7 @@ const seedDatabase = async () => {
     await Lead.deleteMany({});
     await Client.deleteMany({});
     await FollowUp.deleteMany({});
+    await Product.deleteMany({});
     console.log('Cleared existing data.');
 
     // 1. Seed Users (passwords will be hashed in Pre-save hook automatically)
@@ -157,6 +159,15 @@ const seedDatabase = async () => {
     });
 
     console.log('Seeded 3 follow-ups successfully.');
+
+    // 5. Seed Products
+    await Product.create([
+      { name: 'Seamless Steel Pipes', description: 'High quality rust-resistant steel pipes.', price: 1500, category: 'Steel', sku: 'STL-PIPE-001' },
+      { name: 'Industrial Plastic Sheets', description: 'Heavy duty polymer plastic sheets.', price: 800, category: 'Plastic', sku: 'PLS-SHT-002' },
+      { name: 'Precision Gear Assemblies', description: 'Standard gear assemblies for high torque motors.', price: 5000, category: 'Gears', sku: 'GER-ASM-003' }
+    ]);
+    console.log('Seeded 3 products successfully.');
+
     console.log('Database Seeding Completed Successfully!');
     process.exit(0);
   } catch (error) {
